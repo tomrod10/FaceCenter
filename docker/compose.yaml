@@ -4,7 +4,7 @@ services:
     container_name: prometheus
     restart: unless-stopped
     ports:
-      - "192.168.69.186:9090:9090"
+      - "${SERVER_IP}:9090:9090"
     volumes:
       - /var/lib/prometheus:/prometheus
       - ../prometheus/prometheus.yml:/etc/prometheus/prometheus.yml:ro
@@ -18,7 +18,7 @@ services:
     container_name: grafana
     restart: unless-stopped
     ports:
-      - "192.168.69.186:3000:3000"
+      - "${SERVER_IP}:3000:3000"
     volumes:
       - /var/lib/grafana:/var/lib/grafana
     networks:
@@ -40,7 +40,7 @@ services:
     container_name: cadvisor
     restart: unless-stopped
     ports:
-      - "192.168.69.186:8080:8080"
+      - "${SERVER_IP}:8080:8080"
     privileged: true
     devices:
       - /dev/kmsg
