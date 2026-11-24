@@ -5,6 +5,8 @@ services:
     restart: unless-stopped
     ports:
       - "${SERVER_IP}:9090:9090"
+    extra_hosts:
+    - "host.docker.internal:host-gateway"
     volumes:
       - /var/lib/prometheus:/prometheus
       - ../prometheus/prometheus.yml:/etc/prometheus/prometheus.yml:ro
@@ -31,11 +33,9 @@ services:
     network_mode: host
     pid: host
     volumes:
-      - /:/host:ro
+      - /:/host:ro,rslave
     command:
       - --path.rootfs=/host
-    extra_hosts:
-      - "host.docker.internal:host-gateway"
 
   cadvisor:
     image: gcr.io/cadvisor/cadvisor:latest
