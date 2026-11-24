@@ -34,8 +34,8 @@ services:
       - /:/host:ro
     command:
       - --path.rootfs=/host
-    networks:
-      - monitoring
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
 
   cadvisor:
     image: gcr.io/cadvisor/cadvisor:latest
