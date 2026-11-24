@@ -34,6 +34,6 @@ scrape_configs:
       - targets: ["cadvisor:8080"]
         labels:
           device: "laptop"
-      - targets: ["{KRIA_IP}:8080"]
+      - targets: ["${KRIA_IP}:8080"]
         labels:
           device: "kria"
